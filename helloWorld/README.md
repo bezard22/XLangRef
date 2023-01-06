@@ -17,5 +17,4 @@ Simple Hello World script
 | ruby | Complete | Complete | Not Started | Not Started |
 | rust | Complete | Complete | Not Started | Not Started |
 | scala | Complete | Complete | Not Started | Not Started |
-| swift | In Progress | Not Started | Not Started | Not Started |
 | typescript | Complete | Complete | Not Started | Not Started |

@@ -1,15 +1,29 @@
 #!/bin/bash
 # helloWorld/runAll.sh
 
-./c/run.sh $1
-./c#/run.sh $1
-./c++/run.sh $1
-./go/run.sh $1
-./java/run.sh $1
-./javascript/run.sh $1
-./python/run.sh $1
-./ruby/run.sh $1
-./rust/run.sh $1
-./scala/run.sh $1
-./swift/run.sh $1
-./typescript/run.sh $1
+function usage() {
+    echo "usage: $0 [-v <verbose flag>] [-t <timed flag>]";
+}
+
+v=""
+t=""
+
+while getopts 'vt' flag; do
+    case "${flag}" in 
+        v) v="v";;
+        t) t="t";;
+        *) usage; exit ;;
+    esac
+done
+
+./run.sh -$v${t}l "c"
+./run.sh -$v${t}l "c#"
+./run.sh -$v${t}l "c++"
+./run.sh -$v${t}l "go"
+./run.sh -$v${t}l "java"
+./run.sh -$v${t}l "javascript"
+./run.sh -$v${t}l "python"
+./run.sh -$v${t}l "ruby"
+./run.sh -$v${t}l "rust"
+./run.sh -$v${t}l "scala"
+./run.sh -$v${t}l "typescript"
