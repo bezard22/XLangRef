@@ -18,4 +18,4 @@ Simple Hello World script
 | rust | Complete | Complete | Not Started | Not Started |
 | scala | Complete | Complete | Not Started | Not Started |
 | swift | In Progress | Not Started | Not Started | Not Started |
-| typescript | In Progress | Not Started | Not Started | Not Started |
+| typescript | Complete | Complete | Not Started | Not Started |

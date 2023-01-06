@@ -4,7 +4,10 @@
 //    helloWorld  -  Print "Hello World!" to terminal
 //------------------------------------------------------------------------
 
-// Main Fuction
-if (require.main === module) {
-    hello();
+// Prints Hello World message to the terimanl.
+function hello(): void {
+    console.log("Hello World!");
 }
+
+// Main Fuction
+hello();

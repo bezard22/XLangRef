@@ -10,6 +10,4 @@ function hello() {
 }
 
 // Main Fuction
-if (require.main === module) {
-    hello();
-}
+hello();

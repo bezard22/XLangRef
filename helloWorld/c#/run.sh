@@ -8,7 +8,29 @@ function run () {
     rm ./main.exe
 }
 
-case $PWD in
-    */c#) run ;;
-    *) cd ./c#; run ;;
-esac
+lang="c#"
+
+while getopts ':vt' flag; do
+    case "${flag}" in 
+        v) verbose=1 ;;
+        t) timed=1 ;;
+    esac
+done
+
+function runin () {
+    case $PWD in
+        */$lang) run ;;
+        *) cd ./$lang; run ;;
+    esac    
+}
+
+if [[ -v verbose ]];
+then
+    echo "$lang:";
+fi
+if [[ -v timed ]];
+then
+    time runin
+else
+    runin
+fi

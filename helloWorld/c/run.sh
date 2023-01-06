@@ -1,14 +1,14 @@
 #!/bin/bash
-# helloWorld/c++/run.sh
+# helloWorld/c/runs.sh
 
-# execute c++ helloWorld
+# execute c helloWorld
 function run () {
-    g++ ./src/main.cpp -o main
+    gcc ./src/main.c -o main
     ./main
-    rm main
+    rm ./main
 }
 
-lang="c++"
+lang="c"
 
 while getopts ':vt' flag; do
     case "${flag}" in 
