@@ -19,10 +19,17 @@ A series of data structures, algorithms, utilities, and application implemented 
 
 ## Projects
 
+See README wihtin each project directory for further details.
+
 | Project | Description | Staatus |
 | --- | --- | --- |
 | helloWorld | simple hello world script | Complete |
-| sort | Implementation of multiple sorting algorithms | In Progress |
+| sort | implementation of multiple sorting algorithms | In Progress |
+| array | implementation of array data structures: stack, queue, priority-queue, linked-list, doubly linked-list | Not Started |
+| tree | implementeation of graph data structures: tree, binary-tree, binary-search-tree, heap
+| graph | implementation of graph data structures and algorithms | Not Started |
+| database | database interface | Not Started |
+| stateMachine | implementation of the state machine design pattern | Not Started |
 
 
 ---
