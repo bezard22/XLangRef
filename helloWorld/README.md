@@ -1,20 +1,32 @@
 # helloWorld
 
 Simple Hello World script
-- Single hello function which prints message to the terminal
-- main function which calls the hello function
+
+---
 
 ## Project Status
-| Language | Implementation | Run Script | Test Script | Build Script |
+| Language | Implementation | Test Script | Run Script | Build Script |
 | --- | --- | --- | --- | --- |
-| c | Complete | Complete | Not Started | Not Started |
-| c# | Complete | Complete | Not Started | Not Started |
-| c++ | Complete | Complete | Not Started | Not Started |
-| go | Complete | Complete | Not Started | Not Started |
-| java | Complete | Complete | Not Started | Not Started |
-| javascript | Complete | Complete | Not Started | Not Started |
-| python | Complete | Complete | Not Started | Not Started |
-| ruby | Complete | Complete | Not Started | Not Started |
-| rust | Complete | Complete | Not Started | Not Started |
-| scala | Complete | Complete | Not Started | Not Started |
-| typescript | Complete | Complete | Not Started | Not Started |
+| c | Complete | NA | Complete | Not Started |
+| c# | Complete | NA | Complete | Not Started |
+| c++ | Complete | NA | Complete | Not Started |
+| go | Complete | NA | Complete | Not Started |
+| java | Complete | NA | Complete | Not Started |
+| javascript | Complete | NA | Complete | Not Started |
+| python | Complete | NA | Complete | Not Started |
+| ruby | Complete | NA | Complete | Not Started |
+| rust | Complete | NA | Complete | Not Started |
+| scala | Complete | NA | Complete | Not Started |
+| typescript | Complete | NA | Complete | Not Started |
+
+---
+
+## Design
+
+### Project Structure
+```
+├── <lang>
+│   ├── src
+│   │   └── main.
+│   └── run.sh
+```

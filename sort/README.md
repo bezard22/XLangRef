@@ -45,7 +45,7 @@ options:
 
 ## Design
 
-### Project structure
+### Project Structure
 ```
 ├── <lang>
 │   ├── src
