@@ -19,7 +19,7 @@ then
     cd ./$lang
     if [[ -v verbose ]];
     then
-        echo "$lang:";
+        echo "Running $lang:";
     fi
     if [[ -v timed ]];
     then

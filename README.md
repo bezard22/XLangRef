@@ -1,7 +1,7 @@
 # XLangRef
 Cross Language Reference
 
-A series of data structures, algorithms, utilities, and application implemented across the following programming languages
+A series of data structures, algorithms, utilities, and application implemented across the following programming languages.
 
 - C
 - C++
@@ -14,6 +14,16 @@ A series of data structures, algorithms, utilities, and application implemented 
 - Rust
 - Scala
 - TypeScript
+
+---
+
+## Projects
+
+| Project | Description | Staatus |
+| --- | --- | --- |
+| helloWorld | simple hello world script | Complete |
+| sort | Implementation of multiple sorting algorithms | In Progress |
+
 
 ---
 
@@ -37,12 +47,12 @@ Each project README contains a status table in the following format:
 ---
 
 ## Design
-### Project structure
 Within each project directory there will be a directory for each language containg a src directory and a run.sh script. Each project directory will also include a README.md run.sh, and runAll.sh
 
 |  |  |  |
 | --- | --- | --- |
 | \<proj\>/\<lang\>/run.sh | bash script which executes the imlementation |
+| \<proj\>/\<lang\>/build/build.sh | bash script which builds a binary of the implementation |
 | \<proj\>/run.sh | bash script which executes the specified implementation | usage: ./run.sh [-l \<langauge\>] [-v \<verbose flag\>] [-t \<timed flag\>] |
 | \<proj\>/runAll.sh | bash script which executes all implementations |  usage: ./runAll.sh [-v \<verbose flag\>] [-t \<timed flag\>] |
 
@@ -54,9 +64,10 @@ Within each project directory there will be a directory for each language contai
 │   │   ├── src
 │   │   │   ├── main.
 │   │   │   └── test.
+│   │   ├── build
+│   │   │   └── build.sh
 │   │   └── run.sh
 |   ├── README.md
 |   ├── run.sh
 |   └── runAll.sh
 ```
-

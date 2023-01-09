@@ -2,31 +2,26 @@
 # <path>
 
 function usage() {
-    echo "usage: $0 [-l <langauge>] [-v <verbose flag>] [-t <timed flag>]";
+    echo "usage: $0 [-l <langauge>] [-o outfile]";
 }
 
-while getopts 'l:vt' flag; do
+while getopts 'l:o:v' flag; do
     case "${flag}" in 
         l) lang="$OPTARG" ;;
         v) verbose=1 ;;
-        t) timed=1 ;;
+        o) outfile="$OPTARG" ;;
         *) usage ;;
     esac
 done
 
-if [[ -v lang ]];
+if [[ -v lang  ]] && [[ -v outfile  ]];
 then
-    cd ./$lang
+    cd ./$lang/build
     if [[ -v verbose ]];
     then
         echo "Building $lang:";
     fi
-    if [[ -v timed ]];
-    then
-        time ./run.sh
-    else
-        ./run.sh
-    fi
+    ./build.sh $outfile
 else
     usage
 fi
