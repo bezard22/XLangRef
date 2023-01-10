@@ -19,15 +19,6 @@ def _merge(arl: list, arr: list, reverse: bool) -> list:
     :return: merged array
     :rtype: list
     """        
-    """Recursive merge method.
-
-    :param arl: left array
-    :type arl: list
-    :param arr: right array
-    :type arr: list
-    :return: merged array
-    :rtype: list
-    """        
     if len(arl) == 0:
         return arr
     if len(arr) == 0:

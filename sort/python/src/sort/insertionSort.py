@@ -19,12 +19,10 @@ def insertionSort(toSort: list, reverse=False) -> list:
     ar = toSort.copy()
 
     # iterate through array
-    i = 1
-    while i < len(ar):
+    for i in range(len(ar)):
         j = i
         while j > 0 and ((not reverse and ar[j - 1] > ar[j]) or (reverse and ar[j - 1] < ar[j])):
             swap(ar, j, j - 1)
             j -= 1
-        i += 1
-
+            
     return ar
