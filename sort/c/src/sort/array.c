@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include "array.h"
 
 /*
@@ -11,7 +12,7 @@
 */
 
 // array constructor
-array * newArray(int *ar, int len) {
+array * newArray(int *ar, size_t len) {
     array *newAr = malloc(sizeof(array));
     newAr->len = len;
     newAr->ar = ar;
@@ -35,6 +36,29 @@ array * slice(array *arptr, int start, int end) {
         arsl[i] = arptr->ar[j];
         i++;
     }
-    array *newAr = newArray(arsl, n);
-    return newAr;
+    return newArray(arsl, n);
+}
+
+// concatenate two arrays
+array * concat(array *arl, array * arr) {
+    int n = arl->len + arr->len;
+    int *arc = malloc(sizeof(int) * n);
+    int i = 0;
+    for (int j = 0; j < arl->len; j++) {
+        arc[i] = arl->ar[j];
+        i++;
+    }
+    for (int j = 0; j < arr->len; j++) {
+        arc[i] = arr->ar[j];
+        i++;
+    }
+    return newArray(arc, n);
+}
+
+array * copy(array *arptr) {
+    int *newAr = malloc(sizeof(int) * arptr->len);
+    for (size_t i = 0; i < arptr->len; i++){
+        newAr[i] = arptr->ar[i];
+    }
+    return newArray(newAr, arptr->len);
 }

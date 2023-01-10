@@ -1,5 +1,6 @@
 // sort/c/src/sort.h
 
+#include <stddef.h>
 
 /*
 ------------------------------------------------------------------------
@@ -9,13 +10,15 @@
 
 // array object
 struct array {
-    int len;
     int *ar;
+    size_t len;
 };
 
 typedef struct array array;
 
 // from array.c
-array * newArray(int *ar_, int len);
+array * newArray(int *ar, size_t n);
 void printArray(array *arptr);
 array * slice(array *arptr, int start, int end);
+array * concat(array *arl, array * arr);
+array * copy(array *arptr);

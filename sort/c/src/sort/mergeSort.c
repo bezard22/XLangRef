@@ -17,11 +17,11 @@ array * merge(array *arl, array *arr, int rev) {
         return arl;
     } 
     if ((!rev && arl->ar[0] <= arr->ar[0]) || (rev && arl->ar[0] >= arr->ar[0])) {
-        array * newArl = slice(arl, 1, arl->len);
-        // array * head = newArray()
-        return combine( merge(newArl, arr, rev);
+        array *newArl = slice(arl, 1, arl->len);
+        return concat(slice(arl, 0, 1), merge(newArl, arr, rev));
     } else {
-
+        array *newArr = slice(arr, 1, arr->len);
+        return concat(slice(arr, 0, 1), merge(arl, newArr, rev));
     }
 }
 
@@ -31,5 +31,9 @@ void mergeSort(array *arptr, int rev) {
     if (n > 1) {
         array *arl = slice(arptr, 0, n / 2);
         array *arr = slice(arptr, n / 2, n);
+
+        mergeSort(arl, rev);
+        mergeSort(arr, rev);
+        *arptr = *merge(arl, arr, rev);
     }
 }

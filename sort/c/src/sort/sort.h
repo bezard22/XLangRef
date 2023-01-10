@@ -22,3 +22,6 @@ void insertionSort(array *arptr, int rev);
 
 // from mergeSort.c
 void mergeSort(array *arptr, int rev);
+
+// from quickSort.c
+void quickSort(array *arptr, int rev);

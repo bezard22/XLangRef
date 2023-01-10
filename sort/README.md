@@ -29,7 +29,7 @@ options:
 ## Project Status
 | Language | Implementation | Testing | Run Script | Build Script |
 | --- | --- | --- | --- | --- |
-| c | In Progress | Not Started | Not Started | Not Started |
+| c | Complete | Complete | Not Started | Not Started |
 | c# | Not Started | Not Started | Not Started | Not Started |
 | c++ | Not Started | Not Started | Not Started | Not Started |
 | go | Not Started | Not Started | Not Started | Not Started |
