@@ -11,5 +11,5 @@ gcc -o sortMain \
 	./src/sort/mergeSort.c \
 	./src/sort/quickSort.c \
 	./src/main.c
-./sortMain
+./sortMain "$1" "$2" "$3"
 rm ./sortMain
