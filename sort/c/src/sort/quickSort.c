@@ -1,6 +1,7 @@
 // sort/c/src/sort/quickSort.c
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "sort.h"
 
 /*
@@ -9,10 +10,10 @@
 ------------------------------------------------------------------------
 */
 
-int partition(array *arptr, int low, int high, int rev) {
+size_t partition(array *arptr, int low, int high, bool rev) {
     int pi = high;
 
-    int piv = arptr->ar[pi];
+    float piv = arptr->ar[pi];
     int i = low - 1;
     for (int j = low; j <= high; j++) {
         if ((!rev && arptr->ar[j] < piv) || (rev && arptr->ar[j] > piv)){
@@ -28,7 +29,7 @@ int partition(array *arptr, int low, int high, int rev) {
 }
 
 // Recursive quick sort function
-void _quickSort(array *arptr, int low, int high, int rev) {
+void _quickSort(array *arptr, int low, int high, bool rev) {
     if (low < high) {
         int pi = partition(arptr, low, high, rev);
         _quickSort(arptr, low, pi - 1, rev);
@@ -37,6 +38,8 @@ void _quickSort(array *arptr, int low, int high, int rev) {
 }
 
 // Quick sort function.
-void quickSort(array *arptr, int rev) {
-    _quickSort(arptr, 0, arptr->len - 1, rev);
+void quickSort(array *arptr, bool rev) {
+    if (arptr->len > 1) {
+        _quickSort(arptr, 0, arptr->len - 1, rev);
+    }
 }

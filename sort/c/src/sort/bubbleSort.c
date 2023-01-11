@@ -1,6 +1,7 @@
 // sort/c/src/bubbleSort.c
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "sort.h"
 
 /*
@@ -10,7 +11,7 @@
 */
 
 // bubble sort function
-void bubbleSort(array *arptr, int rev) {
+void bubbleSort(array *arptr, bool rev) {
     // iterate through array
     if (arptr->len > 1){
         int i = 0;

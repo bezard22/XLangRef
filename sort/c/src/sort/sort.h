@@ -1,6 +1,7 @@
 // sort/c/src/sort.h
 
 #include "array.h"
+#include <stdbool.h>
 
 /*
 ------------------------------------------------------------------------
@@ -9,19 +10,19 @@
 */
 
 // from sort.c
-void swap(array *arptr, int i, int j);
+void swap(array *arptr, size_t i, size_t j);
 
 // from bubbelSort.c
-void bubbleSort(array *arptr, int rev);
+void bubbleSort(array *arptr, bool rev);
 
 // from selectionSort.c
-void selectionSort(array *arptr, int rev);
+void selectionSort(array *arptr, bool rev);
 
 // from insertionSort.c
-void insertionSort(array *arptr, int rev);
+void insertionSort(array *arptr, bool rev);
 
 // from mergeSort.c
-void mergeSort(array *arptr, int rev);
+void mergeSort(array *arptr, bool rev);
 
 // from quickSort.c
-void quickSort(array *arptr, int rev);
+void quickSort(array *arptr, bool rev);

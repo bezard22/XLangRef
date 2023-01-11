@@ -9,8 +9,8 @@
 */
 
 // swap the values in the given array and indeces i and j.
-void swap(array *arptr, int i, int j) {
-    int tmp = arptr->ar[i];
+void swap(array *arptr, size_t i, size_t j) {
+    float tmp = arptr->ar[i];
     arptr->ar[i] = arptr->ar[j];
     arptr->ar[j] = tmp;
 }

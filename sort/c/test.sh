@@ -2,7 +2,7 @@
 # sort/c/test.sh
 
 # test c sort
-gcc -o sortTest \
+gcc -o sortLibTest \
 	./src/sort/array.c \
 	./src/sort/sort.c \
 	./src/sort/bubbleSort.c \
@@ -10,6 +10,6 @@ gcc -o sortTest \
 	./src/sort/insertionSort.c \
 	./src/sort/mergeSort.c \
 	./src/sort/quickSort.c \
-	./src/test.c
-./sortTest
-rm ./sortTest
+	./src/sort/test.c
+./sortLibTest
+rm ./sortLibTest

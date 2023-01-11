@@ -1,6 +1,7 @@
 // sort/c/src/sort.h
 
 #include <stddef.h>
+#include <stdbool.h>
 
 /*
 ------------------------------------------------------------------------
@@ -10,15 +11,17 @@
 
 // array object
 struct array {
-    int *ar;
+    float *ar;
     size_t len;
+    bool arMem;
 };
 
 typedef struct array array;
 
 // from array.c
-array * newArray(int *ar, size_t n);
+array * newArray(float *ar, size_t len, bool arMem);
 void printArray(array *arptr);
-array * slice(array *arptr, int start, int end);
+array * slice(array *arptr, size_t start, size_t end);
 array * concat(array *arl, array * arr);
 array * copy(array *arptr);
+void freeArray(array *arptr);
