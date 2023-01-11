@@ -4,6 +4,8 @@
 #include <argp.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
+#include <regex.h>
 #include "sort/sort.h"
 
 /*
@@ -64,8 +66,94 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 // parser argp
 static struct argp argp = {options, parse_opt, args_doc, doc};
 
+// sort functions
+void (*funcs[5])(array *arptr, bool rev) = {
+    &bubbleSort,
+    &insertionSort,
+    &selectionSort,
+    &mergeSort,
+    &quickSort,
+};
+
+enum algos {
+    bubble=0,
+    insertion=1,
+    selection=2,
+    merge=3,
+    quick=4,
+};
+
+const char *algoStr[5] = {
+    "bubble",
+    "insertion",
+    "selection",
+    "merge",
+    "quick",
+};
+
+bool valArStr(char *arStr) {
+    char *expr = "^(([-]{0,1}[[:digit:]]{1,}([.][[:digit:]]*){0,1})[,]{0,1}[[:space:]]{0,1}){1,}$";
+    regex_t regex;
+    int regi;
+    // regi = regcomp(&regex, "((-/?[[:digit:]]+([.]([[:digit:]])+)?),([[:space:]])*)+((-?[[:digit:]]+([.]([[:digit:]])+)?),?([[:space:]])*)", 0);
+    regi = regcomp(&regex, expr, REG_EXTENDED);
+    if (regi) {
+        printf("regex compiliation error\n");
+        exit(0);
+    }
+
+    regi = regexec(&regex, arStr, 0, NULL, 0);
+    return (!regi);
+}
+
+bool digitStr(char *str) {
+    while (*str) {
+        if (isdigit(*str++)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void strReplace(char *str, char find, char replace) {
+    char *cur = strchr(str, find);
+    while (cur) {
+        *cur = replace;
+        cur = strchr(str, find);
+    }
+}
+
+array * extractAr(char *arstr) {
+    int n = 1;
+    for (size_t i = 0; i < strlen(arstr); i++){
+        if (arstr[i] == ',') {
+            n++;
+        }
+    }
+    float *ar_ = malloc(sizeof(float) * n);
+
+    char *cur = strchr(arstr, ',');
+    while (cur) {
+        printf("%d\n", cur);
+        *cur = 'c';
+        cur = strchr(arstr, ',');
+    }
+
+    
+}
+
 // main function
 int main(int argc, char **argv) {
+    bool nAr = false;
+    for (size_t i = 0; i < argc; i++){
+        if (digitStr(argv[i])) {
+            strReplace(argv[i], '-', 'n');
+            nAr = true;
+            break;
+        }
+    }
+    
+
     struct arguments arguments;
     arguments.verbose = false;
     arguments.timed = false;
@@ -78,7 +166,37 @@ int main(int argc, char **argv) {
     printf("timed: %d\n", arguments.timed);
     printf("nflag: %d\n", arguments.nflag);
 
+    int algo = quick;
+    int ari = 0;
+    array *arptr;
 
+
+    if (strcmp(arguments.args[1], "") > 0){
+        if (strcmp(arguments.args[0], "bubble") == 0) {
+            algo=bubble;
+        } else if (strcmp(arguments.args[0], "insertion") == 0) {
+            algo=insertion;
+        } else if (strcmp(arguments.args[0], "selection") == 0) {
+            algo=selection;
+        } else if (strcmp(arguments.args[0], "merge") == 0) {
+            algo=merge;
+        } else if (strcmp(arguments.args[0], "quick") == 0) {
+            algo=quick;
+        } else {
+            printf("Unrecognized algo argumnet: %s\n", arguments.args[0]);
+            exit(0);
+        }
+        if (!arguments.nflag){
+            ari = 1;
+        }
+    }
+
+    if (nAr) {
+        strReplace(arguments.args[ari], 'n', '-');    
+    }
+    valArStr(arguments.args[ari]);
+    extractAr(arguments.args[ari]);
+    
 
     exit(0);
 
