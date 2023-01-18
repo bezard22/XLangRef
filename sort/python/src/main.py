@@ -23,7 +23,7 @@ def parse() -> dict[str, any]:
         choices=["bubble", "insertion", "selection", "merge", "quick"],
     )
     parser.add_argument("-n",
-        help="generate and sort an array of length n",
+        help="generate and sort a random array of length n",
         type=int
     )
     parser.add_argument("-t", "--timed",
@@ -91,7 +91,7 @@ def main() -> None:
         except RecursionError:
             print(f"Unable to sort array of size {n} using {args['algo']}Sort due to Python recursion limit")
             exit()
-        print(f"Sorted array of size {n} in {(time() - start) * 1000:.3f} ms using {args['algo']}Sort." )
+        print(f"Sorted array of size {n} in {(time() - start) :.3f} seconds using {args['algo']}Sort." )
     else:
         arSorted = algos[args["algo"]](ar)
     

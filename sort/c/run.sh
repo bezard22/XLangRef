@@ -2,7 +2,7 @@
 # sort/c/run.sh
 
 # Execute c sort
-gcc -o sortMain \
+gcc -o sortUtil \
 	./src/sort/array.c \
 	./src/sort/sort.c \
 	./src/sort/bubbleSort.c \
@@ -11,5 +11,6 @@ gcc -o sortMain \
 	./src/sort/mergeSort.c \
 	./src/sort/quickSort.c \
 	./src/main.c
-./sortMain "$1" "$2" "$3"
-rm ./sortMain
+./sortUtil "$@"
+# ./sortUtil "$1"
+rm ./sortUtil

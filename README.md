@@ -21,7 +21,7 @@ A series of data structures, algorithms, utilities, and application implemented 
 
 See README wihtin each project directory for further details.
 
-| Project | Description | Staatus |
+| Project | Description | Status |
 | --- | --- | --- |
 | helloWorld | simple hello world script | Complete |
 | sort | implementation of multiple sorting algorithms | In Progress |
