@@ -50,3 +50,11 @@ for row in j:
 
 # list comprehension
 k = [i * 5 for i in range(10)]
+
+# tuples, immutable
+l = (1, 2, 3)
+
+# sets, no duplicates
+m = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+m = set(m)
+print(m)

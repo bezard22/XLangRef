@@ -32,7 +32,7 @@ options:
 | c | Complete | Complete | Not Started | Not Started |
 | c# | Not Started | Not Started | Not Started | Not Started |
 | c++ | Not Started | Not Started | Not Started | Not Started |
-| go | Not Started | Not Started | Not Started | Not Started |
+| go | In Progress | In Progress | Not Started | Not Started |
 | java | Not Started | Not Started | Not Started | NA |
 | javascript | Not Started | Not Started | Not Started | Not Started |
 | python | Complete | Complete | Complete | NA |

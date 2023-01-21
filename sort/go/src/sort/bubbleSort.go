@@ -6,8 +6,17 @@ package sort
 //     bubblSort  -   bubble sort implementation
 // ------------------------------------------------------------------------
 
-func bubbleSort(toSort []float32, rev bool) []float32 {
+func BubbleSort(ar *[]float32, rev bool) {
 	var i int
-	for i < len(toSort) {
+	for i < len(*ar)-1 {
+		if (!rev && (*ar)[i] > (*ar)[i+1]) || (rev && (*ar)[i] < (*ar)[i+1]) {
+			swap(ar, i, i+1)
+			i -= 1
+		} else {
+			i += 1
+		}
+		if i < 0 {
+			i = 0
+		}
 	}
 }

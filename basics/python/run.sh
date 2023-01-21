@@ -3,10 +3,10 @@
 
 # numbers
 echo numbers:
-python ./src/types/numbers.py
+python ./src/numbers.py
 echo ""
 
 # arrays
 echo arrays:
-python ./src/types/arrays.py
+python ./src/arrays.py
 echo ""
