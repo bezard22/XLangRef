@@ -8,6 +8,8 @@ import (
 	"github.com/akamensky/argparse"
 	"os"
 	"regexp"
+	"strconv"
+	"strings"
 )
 
 // ------------------------------------------------------------------------
@@ -15,30 +17,29 @@ import (
 // ------------------------------------------------------------------------
 
 type argStruct struct {
-	algo    *string
-	n       *int
-	timed   *bool
-	verbose *bool
-	ar      *[]float32
+	algo    string
+	n       int
+	timed   bool
+	verbose bool
+	ar      []float32
 }
 
 func parse() argStruct {
-	var args argStruct
 	parser := argparse.NewParser("sort", "Sorting Utility. supports integer, floating point and negative numbers")
-	args.algo = parser.Selector("a", "algo",
+	algo := parser.Selector("a", "algo",
 		[]string{"bubble", "insertion", "selection", "merge", "quick"},
 		&argparse.Options{
 			Help:    "sorting algorithm to use",
 			Default: "quick",
 		},
 	)
-	args.n = parser.Int("n", "n",
+	n := parser.Int("n", "n",
 		&argparse.Options{Help: "generate and sort a random array of length n"},
 	)
-	args.timed = parser.Flag("t", "timed",
+	timed := parser.Flag("t", "timed",
 		&argparse.Options{Help: "time sorting execution"},
 	)
-	args.verbose = parser.Flag("v", "verbose",
+	verbose := parser.Flag("v", "verbose",
 		&argparse.Options{Help: "Verbose output, full arrays will be printed"},
 	)
 	arStr := parser.StringPositional(
@@ -47,13 +48,18 @@ func parse() argStruct {
 			Validate: validateAr,
 		},
 	)
-
 	err := parser.Parse(os.Args)
 	if err != nil {
 		fmt.Print(parser.Usage(err))
 	}
+
+	var args argStruct
+	args.algo = *algo
+	args.n = *n
+	args.timed = *timed
+	args.verbose = *verbose
 	if arStr != nil {
-		fmt.Println("arStr: ", *arStr)
+		args.ar = extractAr(*arStr)
 	}
 	return args
 }
@@ -66,11 +72,24 @@ func validateAr(args []string) error {
 			return errors.New(errorStr)
 		}
 	}
-
 	return nil
+}
+
+func extractAr(arStr string) []float32 {
+	strSl := strings.Split(arStr, ",")
+	ar := make([]float32, len(strSl))
+	for i, val := range strSl {
+		flVal, _ := strconv.ParseFloat(val, 32)
+		ar[i] = float32(flVal)
+	}
+	return ar
 }
 
 func main() {
 	args := parse()
-	fmt.Println("algo: ", *args.algo)
+	fmt.Println("algo: ", args.algo)
+	fmt.Println("n: ", args.n)
+	fmt.Println("timed: ", args.timed)
+	fmt.Println("verbose: ", args.verbose)
+	fmt.Println("ar: ", args.ar)
 }
