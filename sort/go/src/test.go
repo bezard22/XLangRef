@@ -4,6 +4,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"sort"
 	srt "sort/sort"
 )
@@ -12,7 +13,9 @@ import (
 //     sort  -   test script for sort
 // ------------------------------------------------------------------------
 
+// main function
 func main() {
+	// mapping of sorting algorithms
 	funcs := []func(*[]float32, bool){
 		srt.BubbleSort,
 		srt.InsertionSort,
@@ -21,6 +24,7 @@ func main() {
 		srt.QuickSort,
 	}
 
+	// sort algorithm names
 	funcStr := []string{
 		"BubbleSort",
 		"InsertionSort",
@@ -29,6 +33,7 @@ func main() {
 		"QuickSort",
 	}
 
+	// arrays to be tested
 	testArrays := [][]float32{
 		{},
 		{1},
@@ -40,7 +45,15 @@ func main() {
 		{-1, -0.5, 0},
 		{5, 4, 2, 8, 1},
 	}
+	for _, n := range []int{10, 100, 1000} {
+		randAr := make([]float32, n)
+		for i := 0; i < n; i++ {
+			randAr = append(randAr, rand.Float32())
+		}
+		testArrays = append(testArrays, randAr)
+	}
 
+	// perform tests
 	for i := range funcs {
 		for _, ar := range testArrays {
 			for j := 0; j < 2; j++ {

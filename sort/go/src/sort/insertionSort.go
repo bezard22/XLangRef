@@ -6,6 +6,7 @@ package sort
 //     insertionSort  -   insertion sort implementation
 // ------------------------------------------------------------------------
 
+// Insertion sort Function
 func InsertionSort(ar *[]float32, rev bool) {
 	var j int
 	for i := range *ar {

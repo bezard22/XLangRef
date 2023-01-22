@@ -20,19 +20,20 @@ options:
   -h, --help            show this help message and exit
   -a {bubble,insertion,selection,merge,quick}, --algo {bubble,insertion,selection,merge,quick}
                         sorting algorithm to use
-  -n N                  generate and sort an array of length n
+  -n                    generate and sort an array of length n
   -t, --timed           time sorting execution
-  -v, --verbose         Verbose output, full arrays will be printed
+  -v, --verbose         verbose output, full arrays will be printed
+  -r, --rev             reverse flag, array will be sorted in descending order
 ```
 ---
 
 ## Project Status
 | Language | Implementation | Testing | Run Script | Build Script |
 | --- | --- | --- | --- | --- |
-| c | Complete | Complete | Not Started | Not Started |
+| c | Complete | Complete | Complete | Complete |
 | c# | Not Started | Not Started | Not Started | Not Started |
 | c++ | Not Started | Not Started | Not Started | Not Started |
-| go | In Progress | In Progress | Not Started | Not Started |
+| go | Complete | Complete | Complete | Complete |
 | java | Not Started | Not Started | Not Started | NA |
 | javascript | Not Started | Not Started | Not Started | Not Started |
 | python | Complete | Complete | Complete | NA |
@@ -58,7 +59,7 @@ options:
 │   │   │   └── quickSort.
 │   │   ├── main.
 │   │   └── test.
-│   ├── build
-│   │   └── build.sh
-│   └── run.sh
+│   ├── build.sh
+│   ├── run.sh
+│   └── test.sh
 ```

@@ -11,7 +11,7 @@ from time import time
 # ------------------------------------------------------------------------
 
 def parse() -> dict[str, any]:
-    """Parsese command line arguments and returns a dictionary containing argument values
+    """Parses command line arguments and returns a dictionary containing argument values
 
     :return: dictionary containgin argument values
     :rtype: dict[str, any]
@@ -31,7 +31,11 @@ def parse() -> dict[str, any]:
         action="store_true"
     )
     parser.add_argument("-v", "--verbose",
-        help="Verbose output, full arrays will be printed",
+        help="verbose output, full arrays will be printed",
+        action="store_true"
+    )
+    parser.add_argument("-r", "--rev",
+        help="reverse flag, array will be sorted in descending order",
         action="store_true"
     )
     parser.add_argument("ar",
@@ -50,7 +54,7 @@ def validateAr(arString: str) -> list[float]:
     :return: list of float values derived from array string
     :rtype: list[float]
     """    
-    if re.search(r"((-?\d+(\.(\d)+)?),(\s)*)+((-?\d+(\.(\d)+)?),?(\s)*)", arString).group() != arString:
+    if re.search(r"^((-?\d+(\.(\d)+)?),(\s)*)+((-?\d+(\.(\d)+)?),?(\s)*)$", arString).group() != arString:
         raise argparse.ArgumentError()
     return [float(i) for i in arString.strip().split(",")]
 
@@ -85,20 +89,32 @@ def main() -> None:
     
     # sort array
     if args["timed"]:
-        start = time()
-        try:
-            arSorted = algos[args["algo"]](ar)
-        except RecursionError:
-            print(f"Unable to sort array of size {n} using {args['algo']}Sort due to Python recursion limit")
-            exit()
-        print(f"Sorted array of size {n} in {(time() - start) :.3f} seconds using {args['algo']}Sort." )
+        if args["verbose"]:
+            print(f"Original: {ar}")
+            start = time()
+            try:
+                algos[args["algo"]](ar, args["rev"])
+            except RecursionError:
+                print(f"Unable to sort array of size {n} using {args['algo']}Sort due to Python recursion limit")
+                exit()
+            duration = time() - start
+            print(f"Sorted: {ar}")
+        else:
+            start = time()
+            try:
+                algos[args["algo"]](ar, args["rev"])
+            except RecursionError:
+                print(f"Unable to sort array of size {n} using {args['algo']}Sort due to Python recursion limit")
+                exit()
+            duration = time() - start
+        print(f"Sorted array of size {n} in {(duration) :.3f} seconds using {args['algo']}Sort." )
     else:
-        arSorted = algos[args["algo"]](ar)
-    
-    # optionally print output
-    if args["verbose"]:
-        print(f"Original: {ar}")
-        print(f"Sorted: {arSorted}")
+        if args["verbose"]:
+            print(f"Original: {ar}")
+            algos[args["algo"]](ar, args["rev"])
+            print(f"Sorted: {ar}")
+        else:
+            algos[args["algo"]](ar, args["rev"])
 
 
 # Execute main function

@@ -1,7 +1,7 @@
 #!/bin/bash
 # sort/c/run.sh
 
-# Execute c sort
+# run c sort
 gcc -o sortUtil \
 	./src/sort/array.c \
 	./src/sort/sort.c \
@@ -12,5 +12,4 @@ gcc -o sortUtil \
 	./src/sort/quickSort.c \
 	./src/main.c
 ./sortUtil "$@"
-# ./sortUtil "$1"
 rm ./sortUtil

@@ -14,7 +14,7 @@
 // main arguments
 struct arguments {
     char *ar, *algo, *n;
-    bool verbose, timed;
+    bool verbose, timed, rev;
 };
 
 // usage function
@@ -26,22 +26,24 @@ void usage(){
     printf("  -h, --help            show this help message and exit\n");
     printf("  -a {bubble,insertion,selection,merge,quick}, --algo {bubble,insertion,selection,merge,quick}\n");
     printf("                        sorting algorithm to use\n");
-    printf("  -n N                  generate and sort a random array of length n\n");
+    printf("  -n                    generate and sort a random array of length n\n");
     printf("  -t, --timed           time sorting execution\n");
     printf("  -v, --verbose         Verbose output, full arrays will be printed\n");
+    printf("  -r, --rev             reverse flag, array will be sorted in descending order\n");
     exit(0);
 }
 
 // parse arguments
 void parseArgs(struct arguments *argptr, int argc, char* argv[]){
     int next_option;
-    const char* const short_options = "hvtn:a:";
+    const char* const short_options = "hvtrn:a:";
 
     const struct option long_options[] = {
         {"help", 0, NULL, 'h'},
         {"verbose", 0, NULL, 'v'},
         {"timed", 0, NULL, 't'},
         {"algo", 0, NULL, 'a'},
+        {"rev", 0, NULL, 'r'},
         {NULL, 0, NULL, 0},
     };
 
@@ -58,6 +60,10 @@ void parseArgs(struct arguments *argptr, int argc, char* argv[]){
             
             case 't':
                 argptr->timed = true;
+                break;
+            
+            case 'r':
+                argptr->rev = true;
                 break;
             
             case 'n':
@@ -180,6 +186,7 @@ int main(int argc, char* argv[]){
     struct arguments arguments;
     arguments.verbose = false;
     arguments.timed = false;
+    arguments.rev = false;
 
     // check for negative values
     bool negative = false;
@@ -254,25 +261,25 @@ int main(int argc, char* argv[]){
             printf("Original ");
             printArray(arptr);
             start = clock();
-            (*funcs[algo])(arptr, false);
+            (*funcs[algo])(arptr, arguments.rev);
             end = clock();
             printf("Sorted: ");
             printArray(arptr);
         } else {
             start = clock();
-            (*funcs[algo])(arptr, false);
+            (*funcs[algo])(arptr, arguments.rev);
             end = clock();
         }
-        printf("Sorted array of size n in %.3f seconds using %sSort.\n", (((double)(end - start)) / CLOCKS_PER_SEC), algoStr[algo]);
+        printf("Sorted array of size %d in %.3f seconds using %sSort.\n", n, (((double)(end - start)) / CLOCKS_PER_SEC), algoStr[algo]);
     } else {
         if (arguments.verbose) {
             printf("Original: ");
             printArray(arptr);
-            (*funcs[algo])(arptr, false);
+            (*funcs[algo])(arptr, arguments.rev);
             printf("Sorted: ");
             printArray(arptr);
         } else {
-            (*funcs[algo])(arptr, false);
+            (*funcs[algo])(arptr, arguments.rev);
         }
     }
 

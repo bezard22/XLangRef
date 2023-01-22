@@ -14,7 +14,7 @@ strategies = {
     "rand": lambda high, low : randint(low, high),
 }
 
-def _partition(ar: list, low: int, high: int, reverse: bool, strat: str) -> int:
+def _partition(ar: list, low: int, high: int, rev: bool, strat: str) -> int:
     """Partition function for quick sort
 
     :param ar: array to be sorted
@@ -23,8 +23,8 @@ def _partition(ar: list, low: int, high: int, reverse: bool, strat: str) -> int:
     :type low: int
     :param high: high index of portion of array
     :type high: int
-    :param reverse: sort array highest to lowest
-    :type reverse: bool
+    :param rev: sort array highest to lowest
+    :type rev: bool
     :param strat: pivot selection strategy
     :type strat: str
     :raises Exception: Unrecognized pivot strategy
@@ -40,7 +40,7 @@ def _partition(ar: list, low: int, high: int, reverse: bool, strat: str) -> int:
     piv = ar[pi]
     i = low - 1
     for j in range(low, high + 1):
-        if ((not reverse and ar[j] < piv) or (reverse and ar[j] > piv)):
+        if ((not rev and ar[j] < piv) or (rev and ar[j] > piv)):
             i += 1
             swap(ar, i, j)
             if pi == i:
@@ -48,7 +48,7 @@ def _partition(ar: list, low: int, high: int, reverse: bool, strat: str) -> int:
     swap(ar, i + 1, pi)
     return i + 1
 
-def _quickSort(ar: list, low: int, high: int, reverse: bool, strat: str) -> None:
+def _quickSort(ar: list, low: int, high: int, rev: bool, strat: str) -> None:
     """Recursive quick sort function.
 
     :param ar: array to be sorted
@@ -57,31 +57,24 @@ def _quickSort(ar: list, low: int, high: int, reverse: bool, strat: str) -> None
     :type low: int
     :param high: high index of portion of array
     :type high: int
-    :param reverse: sort array highest to lowest
-    :type reverse: bool
+    :param rev: sort array highest to lowest
+    :type rev: bool
     :param strat: pivot selection strategy
     :type strat: str
     """        
     if low < high:
-        pi = _partition(ar, low, high, reverse, strat)
-        _quickSort(ar, low, pi - 1, reverse, strat)
-        _quickSort(ar, pi + 1, high, reverse, strat)
+        pi = _partition(ar, low, high, rev, strat)
+        _quickSort(ar, low, pi - 1, rev, strat)
+        _quickSort(ar, pi + 1, high, rev, strat)
 
-def quickSort(toSort: list, reverse=False, strat="high") -> list:
+def quickSort(ar: list, rev=False, strat="high") -> None:
     """Quick sort function.
 
-    :param toSort: array to be sorted
-    :type toSort: list
-    :param reverse: sort array highest to lowest, defaults to False
-    :type reverse: bool, optional
+    :param ar: array to be sorted
+    :type ar: list
+    :param rev: sort array highest to lowest, defaults to False
+    :type rev: bool, optional
     :param strat: pivot selection strategy, defaults to "high"
     :type strat: str, optional
-    :return: sorted array
-    :rtype: list
     """        
-    ar = toSort.copy()
-
-    # iterate through array
-    _quickSort(ar, 0, len(ar) - 1, reverse, strat)
-
-    return ar
+    _quickSort(ar, 0, len(ar) - 1, rev, strat)

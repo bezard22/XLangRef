@@ -35,11 +35,15 @@ if __name__ == "__main__":
     # perform test
     for func in funcs:
         for ar in testArrays:
-            f = func(ar)
-            fexp = sorted(ar)
-            assert f == fexp, f"{func} forward {ar} expected: {fexp}, produced: {f}"
-            r = func(ar, reverse=True)
-            rexp = fexp[::-1]
-            assert r == rexp, f"{func} reverse {ar} expected: {rexp}, produced: {r}"
+            for i in range(2):
+                test = ar.copy()
+                sol = sorted(ar)
+                if i == 0:
+                    func(test)
+                    assert test == sol, f"{func} forward {ar} expected: {sol}, produced: {test}"
+                else:
+                    func(test, True)
+                    sol = sol[::-1]
+                    assert test == sol, f"{func} reverse {ar} expected: {sol}, produced: {test}"
     
     print("All tests passed.")

@@ -6,6 +6,7 @@ package sort
 //     mergeSort  -   merge sort implementation
 // ------------------------------------------------------------------------
 
+// Recursive merge function.
 func merge(arl []float32, arr []float32, rev bool) []float32 {
 	if len(arl) == 0 {
 		return arr
@@ -20,18 +21,18 @@ func merge(arl []float32, arr []float32, rev bool) []float32 {
 	}
 }
 
+// Recursive merge sort function.
 func mergeSort(ar *[]float32, rev bool) []float32 {
 	n := len(*ar)
 	if n > 1 {
-		if n > 1 {
-			arl := (*ar)[:int(n/2)]
-			arr := (*ar)[int(n/2):]
-			*ar = merge(mergeSort(&arl, rev), mergeSort(&arr, rev), rev)
-		}
+		arl := (*ar)[:int(n/2)]
+		arr := (*ar)[int(n/2):]
+		*ar = merge(mergeSort(&arl, rev), mergeSort(&arr, rev), rev)
 	}
 	return *ar
 }
 
+// Merge sort function.
 func MergeSort(ar *[]float32, rev bool) {
 	mergeSort(ar, rev)
 }

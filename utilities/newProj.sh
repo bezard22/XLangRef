@@ -10,11 +10,15 @@ function setup() {
     echo -e "#!/bin/bash\n# $proj/$1/run.sh" >> $proj/$1/run.sh
     chmod +x $proj/$1/run.sh
 
+    # test script
+    touch $proj/$1/test.sh
+    echo -e "#!/bin/bash\n# $proj/$1/test.sh" >> $proj/$1/test.sh
+    chmod +x $proj/$1/test.sh
+
     # build script
-    mkdir $proj/$1/build
-    touch $proj/$1/build/build.sh
-    echo -e "#!/bin/bash\n# $proj/$1/build/build.sh" >> $proj/$1/build/build.sh
-    chmod +x $proj/$1/build/build.sh
+    touch $proj/$1/build.sh
+    echo -e "#!/bin/bash\n# $proj/$1/build.sh" >> $proj/$1/build.sh
+    chmod +x $proj/$1/build.sh
     
     # src directory
     mkdir $proj/$1/src

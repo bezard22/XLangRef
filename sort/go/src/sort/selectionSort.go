@@ -6,6 +6,7 @@ package sort
 //     selectionSort  -   selection sort implementation
 // ------------------------------------------------------------------------
 
+// Selection sort function.
 func SelectionSort(ar *[]float32, rev bool) {
 	for i := range *ar {
 		minIndex := i
