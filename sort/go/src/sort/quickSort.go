@@ -49,6 +49,6 @@ func quickSort(ar *[]float32, low int, high int, rev bool, strat string) {
 	}
 }
 
-func QuickSort(ar *[]float32, rev bool, strat string) {
-	quickSort(ar, 0, len(*ar)-1, rev, strat)
+func QuickSort(ar *[]float32, rev bool) {
+	quickSort(ar, 0, len(*ar)-1, rev, "high")
 }

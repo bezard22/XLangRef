@@ -20,14 +20,18 @@ func merge(arl []float32, arr []float32, rev bool) []float32 {
 	}
 }
 
-func MergeSort(ar *[]float32, rev bool) []float32 {
+func mergeSort(ar *[]float32, rev bool) []float32 {
 	n := len(*ar)
 	if n > 1 {
 		if n > 1 {
 			arl := (*ar)[:int(n/2)]
 			arr := (*ar)[int(n/2):]
-			*ar = merge(MergeSort(&arl, rev), MergeSort(&arr, rev), rev)
+			*ar = merge(mergeSort(&arl, rev), mergeSort(&arr, rev), rev)
 		}
 	}
 	return *ar
+}
+
+func MergeSort(ar *[]float32, rev bool) {
+	mergeSort(ar, rev)
 }

@@ -3,35 +3,74 @@
 package main
 
 import (
+	"errors"
 	"fmt"
-	"sort/sort"
+	"github.com/akamensky/argparse"
+	"os"
+	"regexp"
 )
 
-func main() {
-	funcs := []func(*[]float32, bool){
-		sort.BubbleSort,
-		sort.InsertionSort,
-		sort.SelectionSort,
-	}
+// ------------------------------------------------------------------------
+//     sort  -   demonstrates functionality of several sort algorithms
+// ------------------------------------------------------------------------
 
-	testArrays := [][]float32{
-		{},
-		{1},
-		{1, 2, 3, 4, 5},
-		{5, 4, 3, 2, 1},
-		{-2, -1, 0, 1, 2},
-		{2, 1, 0, -1, -2},
-		{0, 0.5, 1},
-		{-1, -0.5, 0},
-		{5, 4, 2, 8, 1},
-	}
+type argStruct struct {
+	algo    *string
+	n       *int
+	timed   *bool
+	verbose *bool
+	ar      *[]float32
+}
 
-	for _, f := range funcs {
-		for _, ar := range testArrays {
-			test := make([]float32, len(ar))
-			copy(test, ar)
-			f(&test, false)
-			fmt.Println(test)
+func parse() argStruct {
+	var args argStruct
+	parser := argparse.NewParser("sort", "Sorting Utility. supports integer, floating point and negative numbers")
+	args.algo = parser.Selector("a", "algo",
+		[]string{"bubble", "insertion", "selection", "merge", "quick"},
+		&argparse.Options{
+			Help:    "sorting algorithm to use",
+			Default: "quick",
+		},
+	)
+	args.n = parser.Int("n", "n",
+		&argparse.Options{Help: "generate and sort a random array of length n"},
+	)
+	args.timed = parser.Flag("t", "timed",
+		&argparse.Options{Help: "time sorting execution"},
+	)
+	args.verbose = parser.Flag("v", "verbose",
+		&argparse.Options{Help: "Verbose output, full arrays will be printed"},
+	)
+	arStr := parser.StringPositional(
+		&argparse.Options{
+			Help:     "array to be sorted, entered as comma seperated string",
+			Validate: validateAr,
+		},
+	)
+
+	err := parser.Parse(os.Args)
+	if err != nil {
+		fmt.Print(parser.Usage(err))
+	}
+	if arStr != nil {
+		fmt.Println("arStr: ", *arStr)
+	}
+	return args
+}
+
+func validateAr(args []string) error {
+	if len(args) > 0 {
+		match, _ := regexp.MatchString(`^((-?\d+(\.(\d)+)?),(\s)*)+((-?\d+(\.(\d)+)?),?(\s)*)$`, args[0])
+		if !match {
+			errorStr := fmt.Sprintf("Incorrect array passed: %s", args[0])
+			return errors.New(errorStr)
 		}
 	}
+
+	return nil
+}
+
+func main() {
+	args := parse()
+	fmt.Println("algo: ", *args.algo)
 }
