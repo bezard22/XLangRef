@@ -71,9 +71,9 @@ Within each project directory there will be a directory for each language contai
 │   │   ├── src
 │   │   │   ├── main.
 │   │   │   └── test.
-│   │   ├── build
-│   │   │   └── build.sh
-│   │   └── run.sh
+│   │   |── build.sh
+│   │   |── run.sh
+│   │   └── test.sh
 |   ├── README.md
 |   ├── run.sh
 |   └── runAll.sh
