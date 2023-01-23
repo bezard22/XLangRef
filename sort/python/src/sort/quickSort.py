@@ -7,7 +7,7 @@ from random import randint
 #     quickSort  -   quick sort implementation
 # ------------------------------------------------------------------------
 
-# Partition straties
+# partition strategies
 strategies = {
     "high": lambda high, low : high,
     "low": lambda high, low : low,

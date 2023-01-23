@@ -35,7 +35,7 @@ options:
 | c++ | Not Started | Not Started | Not Started | Not Started |
 | go | Complete | Complete | Complete | Complete |
 | java | Not Started | Not Started | Not Started | NA |
-| javascript | Not Started | Not Started | Not Started | Not Started |
+| javascript | In Progress | In Progress | Not Started | Not Started |
 | python | Complete | Complete | Complete | NA |
 | ruby | Not Started | Not Started | Not Started | NA |
 | rust | Not Started | Not Started | Not Started | Not Started |
