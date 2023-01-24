@@ -7,7 +7,7 @@ const swap = require("./swap").swap
 // ------------------------------------------------------------------------
 
 // Recursive merge function.
-function merge(arl, arr, rev) {
+async function merge(arl, arr, rev) {
     if (arl.length == 0) {
         return arr;
     }
@@ -22,19 +22,20 @@ function merge(arl, arr, rev) {
 }
 
 // Recursive merge sort function.
-function mergeSort_(ar, rev) {
+async function mergeSort_(ar, rev) {
     let n = ar.length;
     if (n > 1) {
         let arl = ar.slice(0, Math.trunc(n/2));
         let arr = ar.slice(Math.trunc(n/2), ar.length);
-        let ar = merge(mergeSort_(arl, rev), mergeSort_(arr, rev), rev);
+        let ar = await merge(mergeSort_(arl, rev), mergeSort_(arr, rev), rev);
     }
     return ar;
 }
 
 // Merge sort function.
-function mergeSort(ar, rev=false) {
-    ar = mergeSort_(ar, rev);
+async function mergeSort(ar, rev=false) {
+    await mergeSort_(ar, rev);
+    // ar = fin;
 }
 
 exports.mergeSort = mergeSort;

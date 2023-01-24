@@ -6,7 +6,7 @@ const swap = require("./swap").swap
 //     bubblSort  -   bubble sort implementation
 // ------------------------------------------------------------------------
 
-function bubbleSort(ar, rev=false){
+async function bubbleSort(ar, rev=false){
     let i=0;
     while (i < ar.length) {
         if ((!rev && ar[i] > ar[i+1]) || (rev && ar[i] < ar[i+1])) {

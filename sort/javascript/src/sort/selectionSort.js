@@ -7,7 +7,7 @@ const swap = require("./swap").swap
 // ------------------------------------------------------------------------
 
 // Selection sort function.
-function selectionSort(ar, rev=false) {
+async function selectionSort(ar, rev=false) {
     for (let i = 0; i < ar.length; i++) {
         let minIndex = i;
         for (let j = i; j < ar.length; j++) {

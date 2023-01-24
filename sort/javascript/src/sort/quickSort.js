@@ -46,7 +46,7 @@ function _quickSort(ar, low, high, rev, strat) {
 }
 
 // Quick sort function.
-function quickSort(ar, rev=false, strat="high") {
+async function quickSort(ar, rev=false, strat="high") {
     _quickSort(ar, 0, ar.length - 1, rev, strat);
 }
 

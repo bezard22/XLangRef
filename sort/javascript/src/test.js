@@ -9,22 +9,27 @@ const sort = require('./sort/sort')
 //     sort  -   test script for sort
 // ------------------------------------------------------------------------
 
-// let ar = [5, 1, 4, 2, 8];
-// console.log(ar);
-// let test = [...ar];
-// let sol = [...ar].sort();
-// sort.bubbleSort(test);
-// console.log(lodash.isEqual(test, sol));
-
+function testSet(ar, rev) {
+    return new Promise((resolve, reject) => {
+        let test = [...ar];
+        let sol;
+        if (rev) {
+            sol = [...ar].sort((a, b) => {return b - a;});
+        } else {
+            sol = [...ar].sort((a, b) => {return a - b;});
+        }
+        resolve([test, sol]);
+    });
+}
 
 // Main Fuction
-function main() {
+async function main() {
     // sort functions to be tested
     const funcs = [
         sort.bubbleSort,
         sort.insertionSort,
         sort.selectionSort,
-        // sort.mergeSort,
+        sort.mergeSort,
         sort.quickSort,
     ]
     // arrays to be tested
@@ -44,13 +49,13 @@ function main() {
     funcs.forEach(func => {
         testArrays.forEach(ar => {
             for (let i = 0; i < 2; i++) {
-                let test = [...ar];
-                let sol = [...ar].sort((a, b) => {return a - b;});
-                if (i == 0) {
-                    func(test);
-                    const msg = `forward ${ar} expected: ${sol}, produced: ${test}`;
-                    assert(lodash.isEqual(test, sol), msg);
-                }
+                let rev = i > 0;
+                testSet(ar, rev).then((testVals) => {
+                    func(testVals[0], rev).then(() => {
+                        const msg = `${ar} expected: ${testVals[1]}, produced: ${testVals[0]}`;
+                        assert(lodash.isEqual(testVals[0], testVals[1]), msg);
+                    });
+                });
             }
         });
     });
