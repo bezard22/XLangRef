@@ -9,17 +9,15 @@ const sort = require('./sort/sort')
 //     sort  -   test script for sort
 // ------------------------------------------------------------------------
 
-function testSet(ar, rev) {
-    return new Promise((resolve, reject) => {
-        let test = [...ar];
-        let sol;
-        if (rev) {
-            sol = [...ar].sort((a, b) => {return b - a;});
-        } else {
-            sol = [...ar].sort((a, b) => {return a - b;});
-        }
-        resolve([test, sol]);
-    });
+async function testSet(ar, rev) {
+    let test = [...ar];
+    let sol;
+    if (rev) {
+        sol = [...ar].sort((a, b) => {return b - a;});
+    } else {
+        sol = [...ar].sort((a, b) => {return a - b;});
+    }
+    return [test, sol];
 }
 
 // Main Fuction
@@ -46,19 +44,17 @@ async function main() {
     ];
 
     // perform tests
-    funcs.forEach(func => {
-        testArrays.forEach(ar => {
-            for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < funcs.length; i++) {
+        for (let j = 0; j < testArrays.length; j++) {
+            for (let i = 0; i < 1; i++) {
                 let rev = i > 0;
-                testSet(ar, rev).then((testVals) => {
-                    func(testVals[0], rev).then(() => {
-                        const msg = `${ar} expected: ${testVals[1]}, produced: ${testVals[0]}`;
-                        assert(lodash.isEqual(testVals[0], testVals[1]), msg);
-                    });
-                });
+                let testVals = await testSet(testArrays[j], rev);
+                await funcs[i](testVals[0], rev);
+                const msg = `${rev ? "Reverse" : "Forward:"} ${testArrays[j]} expected: ${testVals[1]}, produced: ${testVals[0]}`;
+                assert(lodash.isEqual(testVals[0], testVals[1]), msg);
             }
-        });
-    });
+        }
+    }
     console.log("All tests passed.");
 }
 
